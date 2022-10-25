@@ -10,5 +10,5 @@ Disfruta de la asignatura!
 2. [Ejemplos de clase](ejemplos_clase)
 3. [Ejercicios de refuerzo](refuerzo)
 4. [Retos](retos)
-5. [Mini práctics](mini_practicas)
+5. [Mini prácticas](mini_practicas)
 6. [Proyecto final](_proyecto_final)
