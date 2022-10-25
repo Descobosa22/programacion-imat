@@ -4,3 +4,11 @@
 En este repositorio encontrarás todos los códigos de ejemplo y soluciones de prácticas de la asignatura.
 
 Disfruta de la asignatura!
+
+### Índice de contenidos
+1. [Prácticas](practicas)
+2. [Ejemplos de clase](ejemplos_clase)
+3. [Ejercicios de refuerzo](refuerzo)
+4. [Retos](retos)
+5. [Mini práctics](mini_practicas)
+6. [Proyecto final](_proyecto_final)
