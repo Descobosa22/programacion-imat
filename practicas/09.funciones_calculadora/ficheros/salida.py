@@ -71,7 +71,7 @@ def validar_tipo_dato(tipo_dato, ordinal):
             else:
                 error_entrada_tipo = True 
 
-        if error_entrada_tipo > 0:
+        if error_entrada_tipo:
             print(f">>>Error: el número introducido no es {tipo_dato}")
 
     return numero
