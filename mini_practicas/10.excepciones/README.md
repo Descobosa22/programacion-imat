@@ -17,3 +17,4 @@ Funciones a modificar:
 - Función calcular_caracter(), calcular_abs() y calcular_round():
 	+ Comportamiento actual: si la entrada no es numérica, lanzará un error.  
 	+ A desarrollar: validar la entrada mediante la excepción.
+- División por cero: ¿qué ocurre si se intenta hacer una división por cero? Soluciona este error mediante excepciones.
