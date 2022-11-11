@@ -5,14 +5,15 @@ Esta práctica pretende alcanzar los siguientes resultados de aprendizaje:
 - Saber modularizar un programa en varios módulos y funciones.
 - Dominar la gestión de excepciones.
 - Programar mediante un estilo limpio y ordenado.
+- Saber elegir la estructura de datos que mejor se adapta a cada problema.
 
 ## Enunciado
 
 ### Funcionalidad
 
-Se desea desarrollar un programa que almacene información de personas: nombre, dni y ciudad. El objeto final de este programa es el de clasificar o agrupar las personas por ciudades, como se verá en las operaciones que se ofrecen: mostrar personas de una ciudad o dibujar el histograma por ciudades (número de personas que vivien en la misma ciudad).
+Se desea desarrollar un programa que almacene información de personas: nombre, dni y ciudad. El objeto final de este programa es agrupar las personas por ciudades, como se puede ver en las opciones que se ofrecen: mostrar las personas de una ciudad en concreto o dibujar el histograma de personas por ciudades (número de personas que viven en la misma ciudad, ver salida del programa).
 
-Para no crear personas en cada ejecución, se habilitará una opción que cargará unos datos por defecto.
+Para no tener que crear las personas en cada ejecución, se habilitará la opción 2 para cargar un conjunto de personas por defecto.
 
 ### Operaciones a realizar
 
@@ -66,8 +67,8 @@ if __name__ == "__main__":
 
 ### Restricciones
 - Cuando el usuario introduzca una opción no válida, se lanzará una excepción del tipo OpcionNoValidaError, mostrando uno de estos dos mensajes:
-	+ "La opción debe estar entre 1 y 6"
-	+ "Introduce un número"
+	+ "La opción debe estar entre 1 y 6"  --> si se introduce un número fuera del rango de opciones.
+	+ "Introduce un número" --> si se introduce un opción no númerica.
 - El nombre deberá estár en el formato: Aaaaaa (primera letra mayúsculas y el resto en minúsculas). Si no es así se lanzará la excepción: **NombreError**
 - El DNI tendrá dos números y una letra. La letra será el carácter equivalente al valor ASCII 65 + la suma de los dos dígitos anteriores. Por ejemplo, en el caso de 11, la letra será 65 + 1 + 1 = 67, valor ASCII de la letra C. Si no se corresponde con ese formato y valores se lanzará la excepción **DNIError**.
 
