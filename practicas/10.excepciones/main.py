@@ -1,5 +1,5 @@
 import operaciones as op
-from excepciones import *
+from excepciones import OpcionNoValidaError, NombreError, DNIError
 
 if __name__ == "__main__":
     opcion = 0
