@@ -60,6 +60,11 @@ La salida del programa constará de varias partes de forma incremental, según v
     print(f"{COLOR_ROJO+CHAR_UBER+COLOR_DEFECTO}: Uber llevando cliente")
 ```
 
+Si no se muestran los colores en la consola de ejecución en VSC, escribir el siguiente comando en una Consola (Símbolo del Sistema) como administrador:
+```
+reg add HKEY_CURRENT_USER\Console /v VirtualTerminalLevel /t REG_DWORD /d 0x00000001 /f
+```
+
 #### Pantalla de ejecución
 
 ![Output](output.jpg)
