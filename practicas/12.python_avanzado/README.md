@@ -103,7 +103,7 @@ Ejecutando tests....
 Fin de los tests
 ```
 
-![Output](output.jpg)
+![Output](output_new.jpg)
 
 ### Salida generada
 
