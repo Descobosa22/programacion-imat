@@ -1,102 +1,71 @@
-# Práctica 12. Python avanzado
+# Práctica 11. Objetos UBER
 
 ## Objetivo
 Esta práctica pretende alcanzar los siguientes resultados de aprendizaje:
-- Crear unidades de test.
-- Identificar e implementar objetos básicos.
-- Aprender a limpiar los datos de entrada mediante métodos de la clase string.
-- Tipificación de funciones.
-- Ejecutar programas por consola con envío de parámetros al programa principal.
-- Aprender a seguir unos interfaces dados.
+- Saber diseñar un programa con el paradigma de orientación a objetos.
+- Dominar la definición de objetos mediante clases.
+- Potenciar el uso de los métodos para delegar acciones en los objetos y concentrar su lógica.
+- Dominar la modularización de código.
+- Aprender a no trabajar con valores fijos en un programa que luego puedan cambiar.
 
 ## Enunciado
 
-El objetivo del programa será mostrar todos los ordenadores que posee una tienda de informática a partir de su marca. La entrada de la marca se realizará mediante los argumentos del programa main por medio de la consola. Si no somos capaces de conseguir esta funcionalidad, se pedirá por teclado. 
+### Funcionalidad
 
-En el siguiente caso se buscará por Lenovo.
+Se desea desarrollar un programa basado en objetos que simule el comportamiento de un servicio de taxi tipo Uber. 
 
-```
-(base) C:\Users\davidcb\Python\asignatura\practicas\12.python_avanzado>C:/Users/davidcb/Anaconda3/python.exe c:/Users/davidcb/Python/practicas/12.python_avanzado/main.py Lenovo 
-``` 
+El programa deberá trabajar con una matriz de 5 x 5 que representará la ciudad. Estos valores podrán ser modificados en un futuro, por lo que deberá programarse para cambiarlo fácilmente en el futuro.
 
-El programa trabajará con la información de ordenadores que suministrará la función siguiente. C&P el código en vuestro código:
+En la ciudad existirán un cliente y un vehículo que se posicionarán de una forma aleatoria en la ciudad. Cuando se inicie el programa asignaremos al cliente mediante el teclado el destino al cual deberá ir, mediante unas coordenadas x, y. El formato obligatorio de entrada deberá ser "numero,numero", pudiéndo aceptarse entradas con cualquier número de espacios: 3,5 ó 3, 5 ó 3 , 5 ó 3   ,5... El usuario podrá introducir cualquier tipo de dato, por lo que el programa deberá gestionar los errores de la mejor forma posible, no pudiendo interrumpirse la ejecución en ningún caso.
 
-```python
-def inicializar_datos() -> list:
-    ordenadores = []
-    ordenadores.append("DEL  ,i5,8,256GB")
-    ordenadores.append("H, Intel i7,8,HD: 128")
-    ordenadores.append("Lenvo  ,Intel i5,8,  200")
-    ordenadores.append("DLL,  Inteli5,8,ssd256")
-    ordenadores.append("Lnovo, i7,  8,512gb")
-    ordenadores.append("HC, Intel+ i7,16, HD1: 512Gb1")
-    ordenadores.append("DLL,  Inteli5,8,ssd6")
+A partir de este momento el cliente comunicará al taxi su posición actual para que le pueda recoger. El taxi deberá tomar la lógica de búsqueda que considere para llegar al cliente desplazándose por la matriz. En el momento que el taxi llegue hasta esa posición, el cliente le indicará su destino y le dirigirá hasta él. Igualmente se podrá seguir la lógica que se desee.
 
-    return ordenadores
-```
+Al llegar al destino el vehículo Uber deberá indicarle al cliente el coste del recorrido, que será igual a una cantidad establecida antes de empezar el programa en € por el número de celdas recorridas (recogida del cliente + transporte al destino). El coste por defecto será 5€/celda.
 
-Como se puede ver, la información se entrega en una lista donde cada elemento es un string con la información del ordenador separada por comas. Esta información está sucia, con muchas erratas y necesita ser limpiada para procesarla posteriormente, como en cualquier proceso de análisis de datos.
+#### Parte avanzada
 
-Los criterios de limpieza de los datos son los siguientes:
-- Marca: se vinculará con la marca que más se parezca a los tres tipos que existen: DELL, HP y Lenovo. La similitud con cada marca la haremos por la mayor coincidencia en el número de caracteres a las marcas reales.
-- CPU: todos los procesadores deberán tener 2 letras, empezarán por una "i" y terminarán con un número. Por ejemplo: i3, i5, i7, ...
-- RAM: ahí hemos tenido suerte y todas las entradas son correctas.
-- HD: el dato del disco duro, también viene muy sucio. Al menos deben ser 2 números consecutivos.
+Preparar el programa para que pueda trabajar con n ubers para n clientes.
 
-Como se puede ver, la última entrada no cumplirá con el último requisito, solo tiene un número de 1 dígito, por lo que no se podrá leer y deberá comunicarse al usuario este hecho.
+### Restriccciones
 
-Una vez leídos los ordenadores se almacenarán en la estructura más rápida posible que consiga dar la información solicitada y con el diseño más apropiado para la estructura de información que se suministra.
-
-Se trabajará con el mejor tratamiento de errores posible que nos lleve a un código limpio y estructurado. 
-
-Se deberán tipificar todas las funciones.
-
-
-### Interfaces del programa
-
-De forma obligatoria, el programa principal deberá trabajar con las siguientes funciones que definen los interfaces siguientes. Si el profesor tomara las siguientes funciones y las llamara desde su main, el programa debería trabajar perfectamente.
-
-Los errores no serán ni descriptivos ni específicos porque la entrada que esté mal, se eliminará y no habrá ninguna posibilidad de recuperación. Se dice que este tipo de procesos son **batch**.
-
-```python
-def limpiar_datos(ordenador:str) -> Ordenador
-    raise Exception
-
-def normalizar_marcas(marca_introducida:str) -> str
-    raise ValueError
-
-def normalizar_cpu(cpu_introducida:str) -> str
-    raise ValueError
-
-def normalizar_hd(hd_introducido:str) -> str
-    raise ValueError
-```
-
-### Etapa de Testing
-
-El programa deberá testeado (validado) en todo momento gracias a un módulo de test que verifique la correcta funcionalidad de todas las funciones.
-
-La salida será la siguiente:
-```
-Ejecutando tests....
-- Función inicializar_datos() -> list: OK
-- Función limpiar_datos(ordenador:str): HP i7 16 512 - OK
-- Función normalizar_marcas(marca_introducida:str) -> str: Lenovo - OK
-- Función normalizar_cpu(cpu_introducida:str) -> str: i5 - OK
-- Función normalizar_hd(hd_introducido:str) -> str: 512 - OK
-Fin de los tests
-```
-
-![Output](output.jpg)
+- Los movimientos del vehículo no podrán ser en diagonal, solo se podrá desplazar en horizontal o vertical.
+- Se asume que no hay conflicto de posiciones con otros objetos.
 
 ### Salida generada
 
+La salida del programa constará de varias partes de forma incremental, según vaya avanzando el alumn@ en la práctica:
+- Geolocalización del Uber: celdas en la que se encuentra en cada momento.
+- Coste solo al finalizar el servicio.
+- Coste durante todo el servicio.
+- Geolocalización visual de la ciudad imprimiendo la matriz en cada instante.
+
+#### Posible leyenda y constantes a utilizar en el programa
+```python
+    CHAR_VACIO        =  "_........_"     # Símbolo en la matriz para representar una celda vacía
+    CHAR_UBER         =  "_..oT=o.._"      # Símbolo en la matriz para representar un UBER
+    CHAR_CLIENTE      =  "_. =:-) ._"      # Símbolo en la matriz para representar un CLIENTE/PASAJERO
+
+    COLOR_VERDE = "\033[1;32m"
+    COLOR_ROJO = "\033[1;31m"
+    COLOR_AMARILLO = "\033[1;33m"
+    COLOR_AZUL = "\033[1;34m"
+    COLOR_DEFECTO = "\033[0m"
 ```
-Ordenadores Lenovo:
-- Lenovo i5 8 200
-- Lenovo i7 8 512
+
+```python
+    print("\n\n### Leyenda:\n")
+    print(f"{COLOR_AMARILLO+CHAR_CLIENTE+COLOR_DEFECTO}: Cliente de Uber")
+    print(f"{COLOR_VERDE+CHAR_UBER+COLOR_DEFECTO}: Uber libre, no tiene servicio")
+    print(f"{COLOR_AZUL+CHAR_UBER+COLOR_DEFECTO}: Uber buscando cliente")
+    print(f"{COLOR_ROJO+CHAR_UBER+COLOR_DEFECTO}: Uber llevando cliente")
 ```
 
+Si no se muestran los colores en la consola de ejecución en VSC, escribir el siguiente comando en una Consola (Símbolo del Sistema) como administrador:
+```
+reg add HKEY_CURRENT_USER\Console /v VirtualTerminalLevel /t REG_DWORD /d 0x00000001 /f
+```
 
+#### Pantalla de ejecución
 
+![Output](output.jpg)
 
