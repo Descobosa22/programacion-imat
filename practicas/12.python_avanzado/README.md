@@ -11,15 +11,18 @@ Esta práctica pretende alcanzar los siguientes resultados de aprendizaje:
 
 ## Enunciado
 
-El objetivo del programa será mostrar todos los ordenadores que posee una tienda de informática a partir de su marca. La entrada de la marca se realizará mediante los argumentos del programa main por medio de la consola. Si no somos capaces de conseguir esta funcionalidad, se pedirá por teclado. 
+El objetivo del programa será mostrar todos los ordenadores que posee una tienda de informática de una marca. La entrada de la marca se realizará mediante los argumentos del programa main por medio de la consola. Si no somos capaces de conseguir esta funcionalidad, se pedirá la marca a buscar por teclado. 
 
-En el siguiente caso se buscará por Lenovo.
+En el siguiente caso se buscarán los ordenadores de la marca Lenovo.
 
 ```
 (base) C:\Users\davidcb\Python\asignatura\practicas\12.python_avanzado>C:/Users/davidcb/Anaconda3/python.exe c:/Users/davidcb/Python/practicas/12.python_avanzado/main.py Lenovo 
 ``` 
 
-El programa trabajará con la información de ordenadores que suministrará la función siguiente. C&P el código en vuestro código:
+Como se mencionaba, si no se alcanza a trabajar con parámetros del programa main, se podría pedir inicialmente la marca por teclado.
+
+
+El programa trabajará con la información de ordenadores que suministrará la función siguiente. DEbéis hacer un C&P del siguiente código e incorporarlo en vuestro programa:
 
 ```python
 def inicializar_datos() -> list:
@@ -35,13 +38,25 @@ def inicializar_datos() -> list:
     return ordenadores
 ```
 
-Como se puede ver, la información se entrega en una lista donde cada elemento es un string con la información del ordenador separada por comas. Esta información está sucia, con muchas erratas y necesita ser limpiada para procesarla posteriormente, como en cualquier proceso de análisis de datos.
+Como se puede ver, la información de partida que se suministra es una lista donde cada elemento es un string con la información del ordenador separada por comas. Esta información está sucia, con muchas erratas y necesita ser limpiada para procesarla posteriormente, como se suele hacer en cualquier proceso de ingesta de datos no estructurados.
 
-Los criterios de limpieza de los datos son los siguientes:
-- Marca: se vinculará con la marca que más se parezca a los tres tipos que existen: DELL, HP y Lenovo. La similitud con cada marca la haremos por la mayor coincidencia en el número de caracteres a las marcas reales.
+Deberemos realizar una serie de funciones que se encargarán de limpiar o normalizar datos de la lista. Los criterios de limpieza de los datos son los siguientes:
+- Marca: el texto de la lista que no sea exactamente una marca se deberá normalizar/corregir con la marca que más se parezca a las tres que existen en la tienda: DELL, HP y Lenovo. La similitud con cada marca la haremos por la mayor coincidencia en el número de caracteres a las marcas reales. 
+    + Ejemplo:
+        - DEL posee 4 letras de DELL, 0 de HP y 2 de Lenovo, por lo que la normalizaremos/corregiremos por DELL.
+        - H posee 0 letras de DELL, 1 de HP y 0 de Lenovo, por lo que la normalizaremos/corregiremos por HP.
 - CPU: todos los procesadores deberán tener 2 letras, empezarán por una "i" y terminarán con un número. Por ejemplo: i3, i5, i7, ...
-- RAM: ahí hemos tenido suerte y todas las entradas son correctas.
-- HD: el dato del disco duro, también viene muy sucio. Al menos deben ser 2 números consecutivos.
+    + Ejemplo:
+        - i5 será i5.
+        - Intel i7 será i7.
+        - Inteli5 será i5.
+- RAM: ahí hemos tenido suerte y todas las entradas son correctas y no debemos limpiar este dato.
+- HD: el dato del disco duro, también viene muy sucio. El dato del disco duro vendrá descrito por al menos 2 números consecutivos.
+    + Ejemplo:
+        - 256GB será normalizado a 256.
+        - HD: 128 será normalizado a 128.
+        - HD1: 512Gb1 será normalizado a 512.
+        - ssd6 no se podrá normalizar porque solo tiene un número.
 
 Como se puede ver, la última entrada no cumplirá con el último requisito, solo tiene un número de 1 dígito, por lo que no se podrá leer y deberá comunicarse al usuario este hecho.
 
@@ -56,34 +71,35 @@ Se deberán tipificar todas las funciones.
 
 De forma obligatoria, el programa principal deberá trabajar con las siguientes funciones que definen los interfaces siguientes. Si el profesor tomara las siguientes funciones y las llamara desde su main, el programa debería trabajar perfectamente.
 
-Los errores no serán ni descriptivos ni específicos porque la entrada que esté mal, se eliminará y no habrá ninguna posibilidad de recuperación. Se dice que este tipo de procesos son **batch**.
+Los errores no serán ni descriptivos ni específicos porque la entrada que esté mal, se eliminará y no habrá ninguna posibilidad de recuperación. Se dice que este tipo de procesos en los que no existe interacción con el usuario son **procesos batch**.
 
 ```python
 def limpiar_datos(ordenador:str) -> Ordenador
     raise Exception
 
-def normalizar_marcas(marca_introducida:str) -> str
+def normalizar_marcas(marca_entrada:str) -> str
     raise ValueError
 
-def normalizar_cpu(cpu_introducida:str) -> str
+def normalizar_cpu(cpu_entrada:str) -> str
     raise ValueError
 
-def normalizar_hd(hd_introducido:str) -> str
+def normalizar_hd(hd_entrada:str) -> str
     raise ValueError
 ```
 
 ### Etapa de Testing
 
-El programa deberá testeado (validado) en todo momento gracias a un módulo de test que verifique la correcta funcionalidad de todas las funciones.
+El programa deberá testeado (validado) en todo momento gracias a un módulo de test (test.py) que verifique la correcta funcionalidad de todas las funciones ejecutándolas de forma unitaria.
 
 La salida será la siguiente:
 ```
+p(base) C:\Users\davidcb\Dropbox\Departamentos\Python\asignatura\practicas\12.python_avanzado>python test.py
 Ejecutando tests....
-- Función inicializar_datos() -> list: OK
+- Función inicializar_datos(): OK
 - Función limpiar_datos(ordenador:str): HP i7 16 512 - OK
-- Función normalizar_marcas(marca_introducida:str) -> str: Lenovo - OK
-- Función normalizar_cpu(cpu_introducida:str) -> str: i5 - OK
-- Función normalizar_hd(hd_introducido:str) -> str: 512 - OK
+- Función normalizar_marcas(marca_introducida:str): Lenovo - OK
+- Función normalizar_cpu(cpu_introducida:str): i5 - OK
+- Función normalizar_hd(hd_introducido:str): 512 - OK
 Fin de los tests
 ```
 
@@ -92,6 +108,8 @@ Fin de los tests
 ### Salida generada
 
 ```
+No se puedo procesar la entrada: DLL,  Inteli5,8,ssd6
+
 Ordenadores Lenovo:
 - Lenovo i5 8 200
 - Lenovo i7 8 512
