@@ -76,7 +76,10 @@ Los errores no serán ni descriptivos ni específicos porque la entrada que est�
 ```python
 def limpiar_datos(ordenador:str) -> Ordenador
     raise Exception
+```
+La función limpiar_datos llamará a su vez a las siguientes funciones:
 
+```python
 def normalizar_marcas(marca_entrada:str) -> str
     raise ValueError
 
