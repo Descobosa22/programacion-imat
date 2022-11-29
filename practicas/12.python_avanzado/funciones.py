@@ -86,4 +86,4 @@ def normalizar_hd(hd_entrada:str) -> str:
     if len(hd_str) < 2:
         raise ValueError
 
-    return int(hd_str)
+    return hd_str
