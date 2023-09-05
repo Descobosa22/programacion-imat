@@ -1,2 +1,0 @@
-class EdadError(Exception):
-    pass
