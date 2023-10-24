@@ -29,10 +29,9 @@ while partida < numero_partidas:
     while not eleccion_ok:
         eleccion_usuario = input("\n¿[P]iedra, [p]apel o [T]ijera? ")
         i = 0
-        while i < len(ELEMENTOS):
+        while i < len(ELEMENTOS) and not eleccion_ok:
             if eleccion_usuario == ELEMENTOS[i]:
                 eleccion_ok = True
-                i = len(ELEMENTOS)
             i += 1
             
     print(f"USER: {eleccion_usuario}", end = "")
